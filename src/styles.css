@@ -1,24 +1,9 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", sans-serif;
     background-color: #f8f9fa;
     color: #333333;
 }
 
 .navbar {
     background-color: #3e3d3d !important;
-}
-
-.container {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-}
-
-.card {
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-3px);
 }
