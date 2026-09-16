@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user';
 
@@ -11,6 +11,7 @@ import { UserService } from '../../services/user';
 })
 export class Home implements OnInit {
   private userService = inject(UserService);
+  private cdr = inject(ChangeDetectorRef);
   
   users: any[] = [];
 
@@ -19,6 +20,7 @@ export class Home implements OnInit {
       next: (data) => {
         this.users = data.results || data; 
         console.log('Usuarios cargados:', this.users);
+        this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('Error al cargar los usuarios:', err);

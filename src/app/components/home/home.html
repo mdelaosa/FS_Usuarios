@@ -2,6 +2,10 @@
     <h2 class="mb-4">Lista de Usuarios</h2>
 
     <div class="row">
+        // Fixing error de que no se cargan + cdr en home.ts
+        <div *ngIf="users.length === 0" class="alert alert-info">
+            <p>Cargando usuarios o lista vacía...</p>
+        </div>
         <div class="col-md-4 mb-3" *ngFor="let user of users">
         <div class="card p-3 text-center">
             <img [src]="user.image" alt="Avatar" class="rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; object-fit: cover;">
