@@ -27,4 +27,15 @@ export class Home implements OnInit {
       }
     });
   }
+  deleteUser(id: string): void {
+  if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+    this.userService.deleteUser(id).subscribe({
+      next: () => {
+        this.users = this.users.filter(user => (user._id || user.id) !== id);
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error('Error al eliminar:', err)
+      });
+    }
+  }
 }
