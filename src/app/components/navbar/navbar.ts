@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  imports: [],
   selector: 'app-navbar',
+  standalone: true,
+  imports: [], 
   styleUrl: './navbar.css',
-  templateUrl: './navbar.html',
+  templateUrl: './navbar.html'
 })
-export class Navbar {}
+export class NavbarComponent { }
