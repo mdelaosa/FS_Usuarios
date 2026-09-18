@@ -3,7 +3,6 @@
     <h2 class="mb-4">Lista de Usuarios</h2>
 
     <div class="row">
-        <!-- Fixing error not loading home + cdr in home.ts -->
         <div *ngIf="users.length === 0" class="alert alert-info">
             <p>Cargando usuarios o lista vacía...</p>
         </div>
@@ -13,21 +12,19 @@
                 <h5>{{ user.first_name }} {{ user.last_name }}</h5>
                 <p class="text-muted">{{ user.email }}</p>
                 <div class="mt-auto d-flex justify-content-around align-items-center pt-2 border-top">
-
                     <button class="btn btn-link text-dark text-decoration-none p-0 d-flex flex-column align-items-center" (click)="viewDetail(user._id)" title="Ver detalle">
                         <i class="bi bi-search fs-5"></i>
                         <small style="font-size: 0.75rem;">Ver detalle</small>
                     </button>
-
                     <button class="btn btn-link text-dark text-decoration-none p-0 d-flex flex-column align-items-center" [routerLink]="['/user/update', user._id]" title="Actualizar">
                         <i class="bi bi-arrow-repeat fs-5"></i>
                         <small style="font-size: 0.75rem;">Actualizar</small>
                     </button>
-
                     <button class="btn btn-link text-danger text-decoration-none p-0 d-flex flex-column align-items-center" (click)="deleteUser(user._id)" title="Eliminar">
                         <i class="bi bi-trash fs-5"></i>
                         <small style="font-size: 0.75rem;">Borrar</small>
                     </button>
+                </div>
             </div>
         </div>
     </div>
