@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
+
 export class Home implements OnInit {
   private userService = inject(UserService);
   private cdr = inject(ChangeDetectorRef);
@@ -29,7 +30,7 @@ export class Home implements OnInit {
       }
     });
   }
-  
+
   deleteUser(id: string): void {
   if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
     this.userService.deleteUser(id).subscribe({
