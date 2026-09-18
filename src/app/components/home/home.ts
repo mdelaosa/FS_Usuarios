@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { UserService } from '../../services/user';
 export class Home implements OnInit {
   private userService = inject(UserService);
   private cdr = inject(ChangeDetectorRef);
-  
+  private router = inject(Router);
+
   users: any[] = [];
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class Home implements OnInit {
       }
     });
   }
+  
   deleteUser(id: string): void {
   if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
     this.userService.deleteUser(id).subscribe({
@@ -37,5 +40,9 @@ export class Home implements OnInit {
       error: (err) => console.error('Error al eliminar:', err)
       });
     }
+  }
+
+  viewDetail(id: string): void {
+    this.router.navigate(['/user', id]);
   }
 }
