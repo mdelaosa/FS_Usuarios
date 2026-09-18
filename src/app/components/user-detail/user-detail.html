@@ -1,27 +1,48 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 text-center shadow-sm" style="width: 100%; max-width: 450px;">
         
-            <div class="card shadow border-0 p-4" *ngIf="user">
-                <div class="text-center mb-4">
-                    <img [src]="user.image" alt="Avatar" class="rounded-circle shadow-sm mb-3" style="width: 120px; height: 120px; object-fit: cover;">
-                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-                    <p class="text-muted">{{ user.email }}</p>
-                </div>
-
-                <ul class="list-group list-group-flush mb-4">
-                <li class="list-group-item d-flex justify-content-between">
-                    <span class="fw-bold">Username:</span> <span>{{ user.username }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                    <span class="fw-bold">ID:</span> <span class="text-muted">{{ user._id || user.id }}</span>
-                </li>
-                </ul>
-                <button class="btn btn-primary" [routerLink]="['/user/update', user._id]">Actualizar</button>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-secondary" (click)="goBack()">Volver al Listado</button>
-                </div>
-            </div>
+        <!-- Imagen del usuario -->
+        <img [src]="user.image" alt="Avatar" class="rounded-circle mx-auto mb-3 shadow-sm" style="width: 100px; height: 100px; object-fit: cover;">
+        
+        <!-- Nombre y correo -->
+        <h3 class="card-title fw-bold mb-1">{{ user.first_name }} {{ user.last_name }}</h3>
+        <p class="text-muted small text-truncate mb-4">{{ user.email }}</p>
+        
+        <!-- Datos adicionales (Username e ID) -->
+        <div class="border-top border-bottom py-3 mb-4 text-start">
+        <div class="d-flex justify-content-between mb-2">
+            <span class="fw-semibold text-secondary">Username:</span>
+            <span class="text-dark">{{ user.username }}</span>
         </div>
+        <div class="d-flex justify-content-between">
+            <span class="fw-semibold text-secondary">ID:</span>
+            <span class="text-muted small text-truncate" style="max-width: 220px;" [title]="user._id">{{ user._id }}</span>
+        </div>
+        </div>
+        
+        <!-- Botones de acción estilo barra de iconos (Igual que el wireframe de la práctica) -->
+        <div class="d-flex justify-content-around align-items-center pt-2">
+        
+        <!-- Volver al listado -->
+        <button class="btn btn-link text-dark text-decoration-none p-0 d-flex flex-column align-items-center" routerLink="/home" title="Volver al listado">
+            <i class="bi bi-arrow-left-circle fs-4"></i>
+            <small style="font-size: 0.75rem;">Volver</small>
+        </button>
+        
+        <!-- Actualizar -->
+        <button class="btn btn-link text-dark text-decoration-none p-0 d-flex flex-column align-items-center" [routerLink]="['/user/update', user._id]" title="Actualizar">
+            <i class="bi bi-arrow-repeat fs-4"></i>
+            <small style="font-size: 0.75rem;">Actualizar</small>
+        </button>
+        
+        <!-- Eliminar con alerta -->
+        <button class="btn btn-link text-danger text-decoration-none p-0 d-flex flex-column align-items-center" (click)="deleteUser(user._id)" title="Eliminar">
+            <i class="bi bi-trash fs-4"></i>
+            <small style="font-size: 0.75rem;">Borrar</small>
+        </button>
+        
+        </div>
+
     </div>
 </div>

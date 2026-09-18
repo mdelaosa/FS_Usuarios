@@ -20,6 +20,10 @@ export class Home implements OnInit {
   users: any[] = [];
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+  
+  loadUsers(): void {  
     this.userService.getAllUsers().subscribe({
       next: (data) => {
         this.users = data.results || data; 
@@ -33,13 +37,16 @@ export class Home implements OnInit {
   }
 
   deleteUser(id: string): void {
-  if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-    this.userService.deleteUser(id).subscribe({
-      next: () => {
-        this.users = this.users.filter(user => (user._id || user.id) !== id);
-        this.cdr.detectChanges();
-      },
-      error: (err) => console.error('Error al eliminar:', err)
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+      this.userService.deleteUser(id).subscribe({
+        next: () => {
+          console.log('OK: Usuario eliminado correctamente');
+          this.users = this.users.filter(user => (user._id || user.id) !== id);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('KO: Error al eliminar el usuario', err);
+        }
       });
     }
   }
