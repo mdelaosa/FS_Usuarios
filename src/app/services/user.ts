@@ -13,6 +13,10 @@ export class UserService {
       return this.http.get<any>(this.apiUrl);
     }
 
+    getUserById(id: string): Observable<any> {
+      return this.http.get<any>(`https://peticiones.online/api/users/${id}`);
+    }
+
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
