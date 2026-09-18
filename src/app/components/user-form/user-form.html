@@ -1,1 +1,40 @@
-<p>user-form works!</p>
+<div class="container mt-4">
+    <div class="card shadow p-4">
+        
+        <h2 class="mb-4 text-center">
+        {{ isEditMode ? 'Actualizar usuario' : 'Crear nuevo usuario' }}
+        </h2>
+
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" formControlName="first_name" placeholder="Introduce el nombre">
+                <div *ngIf="userForm.get('first_name')?.invalid && userForm.get('first_name')?.touched" class="text-danger small mt-1">Obligatorio</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" formControlName="last_name" placeholder="Introduce el apellido">
+                <div *ngIf="userForm.get('last_name')?.invalid && userForm.get('last_name')?.touched" class="text-danger small mt-1">Obligatorio</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="email" placeholder="correo@ejemplo.com">
+                <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger small mt-1">Email inválido</div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">URL de la Imagen</label>
+                <input type="text" class="form-control" formControlName="image" placeholder="https://web.com/img.jpg">
+                <div *ngIf="userForm.get('image')?.invalid && userForm.get('image')?.touched" class="text-danger small mt-1">URL inválida</div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

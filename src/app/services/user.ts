@@ -17,7 +17,15 @@ export class UserService {
       return this.http.get<any>(`https://peticiones.online/api/users/${id}`);
     }
 
-  deleteUser(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
-  }
+    createUser(userData: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl, userData);
+    }
+
+    updateUser(id: string, userData: any): Observable<any> {
+      return this.http.put<any>(`${this.apiUrl}/${id}`, userData);
+    }
+
+    deleteUser(id: string): Observable<any> {
+      return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    }
 }
